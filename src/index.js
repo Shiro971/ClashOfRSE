@@ -24,7 +24,7 @@ ReactDOM.render(
       {/* add routes without layouts */}
       <Route path="/landing" exact component={Landing} />
       <Route path="/profile" exact component={Profile} />
-      <Route path="/Défis/DéfisFormulaire" exact component={DéfisFormulaire} /> {/* Corrige la route */}
+      <Route path="/Défis/DefiForm" exact component={DefiForm} /> {/* Corrige la route */}
       <Route path="/" exact component={Index} />
       {/* add redirect for first page */}
       <Redirect from="*" to="/" />
