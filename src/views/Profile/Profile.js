@@ -1,5 +1,4 @@
 import React from "react";
-
 import Navbar from "components/Navbars/AuthNavbar.js";
 import Footer from "components/Footers/Footer.js";
 
@@ -95,6 +94,11 @@ export default function profile() {
                   </div>
                 </div>
                 <div className="text-center mt-12">
+                  <img
+                    alt="Jenna Stones"
+                    src={require("assets/img/team-2-800x800.jpg").default}
+                    className="shadow-xl rounded-full h-auto align-middle border-none max-w-150-px"
+                  />
                   <h3 className="text-4xl font-semibold leading-normal mb-2 text-blueGray-700 mb-2">
                     Jenna Stones
                   </h3>
