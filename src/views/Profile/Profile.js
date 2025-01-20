@@ -94,11 +94,7 @@ export default function profile() {
                   </div>
                 </div>
                 <div className="text-center mt-12">
-                  <img
-                    alt="Jenna Stones"
-                    src={"195171454-photo-de-profil-d-avatar-féminin-pour-réseau-social-avec-illustration-vectorielle-lumineuse-demi"}
-                    className="shadow-xl rounded-full h-auto align-middle border-none max-w-150-px"
-                  />
+                  
                   <h3 className="text-4xl font-semibold leading-normal mb-2 text-blueGray-700 mb-2">
                     Jenna Stones
                   </h3>
