@@ -1,4 +1,4 @@
-// src/views/DéfisFormulaire.js
+// src/views/Défis/DéfisFormulaire.js
 import React, { useState } from 'react';
 
 const DéfisFormulaire = () => {
