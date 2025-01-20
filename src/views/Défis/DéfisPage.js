@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import CréationDéfi from '../components/CréationDéfi';
 
-const CréationDéfi= () => {
+const DéfisPage= () => {
   const [defis, setDefis] = useState([
     { id: 1, title: 'Défi 1', description: 'Description du défi 1' },
     { id: 2, title: 'Défi 2', description: 'Description du défi 2' },
@@ -27,4 +27,4 @@ const CréationDéfi= () => {
   );
 };
 
-export default CréationDéfi;
+export default DéfisPage;
