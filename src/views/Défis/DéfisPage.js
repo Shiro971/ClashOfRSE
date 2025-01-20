@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import CréationDéfi from '../components/CréationDéfi';
+import DéfisPage from '../components/DefisPage';
 
 const DéfisPage= () => {
   const [defis, setDefis] = useState([
