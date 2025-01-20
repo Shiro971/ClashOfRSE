@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import Defi from '../components/CréationDéfiPage';
+import CréationDéfi from '../components/CréationDéfi';
 
-const CréationDéfiPage = () => {
+const CréationDéfi= () => {
   const [defis, setDefis] = useState([
     { id: 1, title: 'Défi 1', description: 'Description du défi 1' },
     { id: 2, title: 'Défi 2', description: 'Description du défi 2' },
@@ -16,7 +16,7 @@ const CréationDéfiPage = () => {
     <div className="container mx-auto p-4">
       <h1 className="text-4xl font-bold">Liste des Défis</h1>
       {defis.map((defi) => (
-        <Defi
+        <CréationDéfi
           key={defi.id}
           title={defi.title}
           description={defi.description}
@@ -27,4 +27,4 @@ const CréationDéfiPage = () => {
   );
 };
 
-export default CréationDéfiPage;
+export default CréationDéfi;
