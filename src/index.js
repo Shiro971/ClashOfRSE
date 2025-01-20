@@ -13,6 +13,7 @@ import Auth from "layouts/Auth.js";
 import Landing from "views/Landing.js";
 import Profile from "views/Profile/Profile.js";
 import Index from "views/Index.js";
+import DéfisFormulaire from "views/DéfisFormulaire.js"; // Ajoute cette ligne pour importer DéfisFormulaire
 
 ReactDOM.render(
   <BrowserRouter>
@@ -23,7 +24,7 @@ ReactDOM.render(
       {/* add routes without layouts */}
       <Route path="/landing" exact component={Landing} />
       <Route path="/profile" exact component={Profile} />
-      <Route path="/DéfisFormulaire" exact component={DéfisFormulaire} />
+      <Route path="/defis-formulaire" exact component={DéfisFormulaire} /> {/* Corrige la route */}
       <Route path="/" exact component={Index} />
       {/* add redirect for first page */}
       <Redirect from="*" to="/" />
