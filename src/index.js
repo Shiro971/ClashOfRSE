@@ -13,7 +13,6 @@ import Auth from "layouts/Auth.js";
 import Landing from "views/Landing.js";
 import Profile from "views/Profile/Profile.js";
 import Index from "views/Index.js";
-import CréationDéfiPage from "views/DefisPage.js"; // Importer le composant DéfisPage (anciennement CréationDéfi)
 
 ReactDOM.render(
   <BrowserRouter>
@@ -24,7 +23,6 @@ ReactDOM.render(
       {/* add routes without layouts */}
       <Route path="/landing" exact component={Landing} />
       <Route path="/profile" exact component={Profile} />
-      <Route path="/creation-defi" exact component={CréationDéfiPage} /> {/* Modifier ici */}
       <Route path="/" exact component={Index} />
       {/* add redirect for first page */}
       <Redirect from="*" to="/" />
