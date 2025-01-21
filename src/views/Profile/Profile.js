@@ -1,4 +1,5 @@
 import React from "react";
+
 import Navbar from "components/Navbars/AuthNavbar.js";
 import Footer from "components/Footers/Footer.js";
 
@@ -46,13 +47,7 @@ export default function profile() {
               <div className="px-6">
                 <div className="flex flex-wrap justify-center">
                   <div className="w-full lg:w-3/12 px-4 lg:order-2 flex justify-center">
-                    <div className="relative">
-                      <img
-                        alt="..."
-                        src={"195171454-photo-de-profil-d-avatar-féminin-pour-réseau-social-avec-illustration-vectorielle-lumineuse-demi"}
-                        className="shadow-xl rounded-full h-auto align-middle border-none absolute -m-16 -ml-20 lg:-ml-16 max-w-150-px"
-                      />
-                    </div>
+                    
                   </div>
                   <div className="w-full lg:w-4/12 px-4 lg:order-3 lg:text-right lg:self-center">
                     <div className="py-6 px-3 mt-32 sm:mt-0">
@@ -94,10 +89,6 @@ export default function profile() {
                   </div>
                 </div>
                 <div className="text-center mt-12">
-                  <img
-                    alt="Jenna Stones"
-                    className="shadow-xl rounded-full h-auto align-middle border-none max-w-150-px"
-                  />
                   <h3 className="text-4xl font-semibold leading-normal mb-2 text-blueGray-700 mb-2">
                     Jenna Stones
                   </h3>

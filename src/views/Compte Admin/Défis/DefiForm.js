@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 
 class DefiForm extends React.Component {
   constructor(props) {
@@ -9,11 +9,11 @@ class DefiForm extends React.Component {
       date: ''
     };
 
-    this.handleChange = this.handleChange.bind(this);
+    this.handleInputChange = this.handleInputChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  handleChange(event) {
+  handleInputChange(event) {
     const { name, value } = event.target;
     this.setState({
       [name]: value
@@ -31,36 +31,39 @@ class DefiForm extends React.Component {
   render() {
     return (
       <form onSubmit={this.handleSubmit}>
-        <div>
-          <label>Titre:</label>
+        <label>
+          Titre :
           <input
-            type="text"
             name="titre"
+            type="text"
             value={this.state.titre}
-            onChange={this.handleChange}
+            onChange={this.handleInputChange}
             required
           />
-        </div>
-        <div>
-          <label>Description:</label>
+        </label>
+        <br />
+        <label>
+          Description :
           <textarea
             name="description"
             value={this.state.description}
-            onChange={this.handleChange}
+            onChange={this.handleInputChange}
             required
           />
-        </div>
-        <div>
-          <label>Date:</label>
+        </label>
+        <br />
+        <label>
+          Date :
           <input
-            type="date"
             name="date"
+            type="date"
             value={this.state.date}
-            onChange={this.handleChange}
+            onChange={this.handleInputChange}
             required
           />
-        </div>
-        <button type="submit">Envoyer</button>
+        </label>
+        <br />
+        <button type="submit">Créer Défi</button>
       </form>
     );
   }
