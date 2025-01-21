@@ -66,32 +66,36 @@ app.post("/login", async (req, res) => {
   const { email, password } = req.body;
 
   try {
-    const users = await loadUsersFromCSV();
+    const users = await loadUsersFromCSV(); // Charger les utilisateurs depuis le CSV
 
-    const user = users.find((u) => u.email === email);
+    const user = users.find((u) => u.email === email); // Chercher l'utilisateur par son email
     if (!user) {
-      return res.status(401).json({ message: "Identifiants incorrects" });
+      return res.status(401).json({ message: "Identifiants incorrects" }); // Email non trouvé
     }
 
-    bcrypt.compare(password, user.password, (err, isPasswordCorrect) => {
-      if (err) {
-        return res.status(500).json({ message: "Erreur serveur" });
-      }
-
-      if (isPasswordCorrect) {
-        const token = jwt.sign({ email: user.email }, process.env.SECRET_KEY, {
-          expiresIn: "1h",
-        });
-        res.status(200).json({ token });
-      } else {
-        res.status(401).json({ message: "Mot de passe incorrect" });
-      }
-    });
+    // Comparer la date de naissance (mot de passe) avec celle stockée dans le CSV
+    if (user.datedenaissance === password) {
+      const token = jwt.sign({ email: user.email, userId: user.profilid }, process.env.SECRET_KEY, { // Créer un JWT avec l'email et le profil ID
+        expiresIn: "1h", // Expiration du token dans 1 heure
+      });
+      return res.status(200).json({
+        token,
+        nom: user.nom, // Récupérer le nom de l'utilisateur
+        prenom: user.prenom,
+        email: user.email,
+        role: user.roleid, // Récupérer le rôle de l'utilisateur
+        image: user.image, // Récupérer l'image de l'utilisateur
+        profileId: user.profilid, // Récupérer l'ID du profil de l'utilisateur
+      });
+    } else {
+      res.status(401).json({ message: "Mot de passe incorrect" }); // Si le mot de passe (date de naissance) est incorrect
+    }
   } catch (error) {
-    console.error("Erreur lors de la connexion :", error);
-    res.status(500).json({ message: "Erreur serveur" });
+    console.error("Erreur lors de la connexion :", error); // Log en cas d'erreur
+    res.status(500).json({ message: "Erreur serveur" }); // Retourner une erreur serveur
   }
 });
+
 
 // Route d'inscription
 app.post("/register", async (req, res) => {
@@ -105,8 +109,8 @@ app.post("/register", async (req, res) => {
       return res.status(400).json({ message: "L'utilisateur existe déjà" });
     }
 
-    const hashedPassword = await bcrypt.hash(password, 10);
-    const newUser = { email, password: hashedPassword };
+    // Ici, le mot de passe est la date de naissance
+    const newUser = { email, datedenaissance: password };
 
     // Ajouter l'utilisateur au fichier CSV
     const updatedUsers = [...users, newUser];
