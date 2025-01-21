@@ -37,6 +37,10 @@ const RoleAssignmentForm = ({ onSubmit }) => {
           <option value="">Sélectionner un rôle</option>
           <option value="Manager">Manager</option>
           <option value="Enployée">Enployée</option>
+          <option value="Directeur">Directeur</option>
+          <option value="Utilisateur">Utilisateur</option>
+         <option value="Administrateur">Administrateur</option>
+
         </select>
       </label>
       <input type="submit" value="Attribuer le rôle" className="mt-4 bg-lightBlue-500 hover:bg-lightBlue-600 text-white font-bold py-2 px-4 rounded-md shadow-md cursor-pointer" />
