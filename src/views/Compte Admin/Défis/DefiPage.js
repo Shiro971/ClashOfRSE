@@ -1,15 +1,26 @@
-
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 import Navbar from 'components/Navbars/AuthNavbar.js';
 import Footer from 'components/Footers/Footer.js';
 import DefiForm from './DefiForm';
 
-const Defi = () => {
+const DefiPage = () => {
   const [submittedData, setSubmittedData] = useState(null);
+  const [data, setData] = useState([]);
 
   const handleFormSubmit = (formData) => {
     setSubmittedData(formData);
   };
+
+  useEffect(() => {
+    axios.get('/api/get-defis')
+      .then((response) => {
+        setData(response.data);
+      })
+      .catch((error) => {
+        console.error('There was an error fetching the data!', error);
+      });
+  }, [submittedData]);
 
   return (
     <>
@@ -79,13 +90,35 @@ const Defi = () => {
                         <div>
                           <h2>Merci pour votre participation, {submittedData.name}!</h2>
                           <p>Email: {submittedData.email}</p>
-                          <p>Défi à réaliser: {submittedData.activity}</p>
+                          <p>Activité réalisée: {submittedData.activity}</p>
                           <button
                             className="bg-lightBlue-500 active:bg-lightBlue-600 uppercase text-white font-bold hover:shadow-md shadow text-xs px-4 py-2 rounded outline-none focus:outline-none sm:mr-2 mb-1 ease-linear transition-all duration-150"
                             onClick={() => setSubmittedData(null)}
                           >
                             Recommencer
                           </button>
+                        </div>
+                      )}
+                    </div>
+                  </div>
+                </div>
+                <div className="mt-10 py-10 border-t border-blueGray-200 text-center">
+                  <div className="flex flex-wrap justify-center">
+                    <div className="w-full lg:w-9/12 px-4">
+                      {data.length > 0 && (
+                        <div>
+                          <h3 className="text-2xl font-semibold leading-normal mb-2 text-blueGray-700 mb-2">
+                            Liste des défis soumis :
+                          </h3>
+                          <ul>
+                            {data.map((defi) => (
+                              <li key={defi.id} className="my-2">
+                                <p>Nom du défi: {defi.name}</p>
+                                <p>Activité: {defi.activity}</p>
+                                <p>Auteur: {defi.author}</p>
+                              </li>
+                            ))}
+                          </ul>
                         </div>
                       )}
                     </div>
@@ -101,4 +134,4 @@ const Defi = () => {
   );
 };
 
-export default Defi;
+export default DefiPage;
