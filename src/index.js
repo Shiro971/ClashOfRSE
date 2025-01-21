@@ -14,6 +14,8 @@ import Landing from "views/Landing.js";
 import Profile from "views/Profile/Profile.js";
 import Index from "views/Index.js";
 import DefiForm from "views/Compte Admin/Défis/DefiForm";
+import RoleAssignmentPage from "views/Compte Admin/Role/RoleAssignmentForm"; // Ajoute cette ligne
+import ProfileCustomizationPage from "views/Compte Admin/ProfileCustomizationForm/ProfileCustomizationForm";
 ReactDOM.render(
   <BrowserRouter>
     <Switch>
@@ -24,6 +26,9 @@ ReactDOM.render(
       <Route path="/landing" exact component={Landing} />
       <Route path="/profile" exact component={Profile} />
       <Route path="/DefiForm" exact component={DefiForm} /> {/* Corrige la route */}
+      <Route path="/RoleAssignmentPage" exact component={RoleAssignmentPage} /> {/* Corrige la route */}
+      <Route path="/ProfileCustomizationPage" exact component={ProfileCustomizationPage} /> {/* Corrige la route */}
+
       <Route path="/" exact component={Index} />
       {/* add redirect for first page */}
       <Redirect from="*" to="/" />
