@@ -1,136 +1,81 @@
 import React from "react";
-import { View, Text, Image, StyleSheet, TouchableOpacity, ScrollView } from "react-native";
-import Navbar from "../components/Navbars/AuthNavbar"; // Ensure your Navbar component is adapted for React Native
-import Footer from "../components/Footers/Footer"; // Ensure your Footer component is adapted for React Native
+import { View, Text, ImageBackground, StyleSheet, ScrollView } from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
+import { styled } from "nativewind";
 
-import Icon from 'react-native-vector-icons/FontAwesome'; // Assuming you are using react-native-vector-icons for icons
+// Components
+const Navbar = () => (
+  <View className="w-full py-4 bg-transparent flex-row justify-center">
+    <Text className="text-white text-lg font-bold">Clash of RSE</Text>
+  </View>
+);
+
+const Footer = () => (
+  <View className="w-full py-4 bg-gray-900">
+    <Text className="text-center text-white text-sm">© 2025 Clash of RSE. All rights reserved.</Text>
+  </View>
+);
 
 export default function Landing() {
   return (
-    <>
-      <Navbar transparent />
-      <ScrollView contentContainerStyle={styles.main}>
-        <View style={styles.header}>
-          <Image
-            source={{ uri: 'https://images.unsplash.com/photo-1557804506-669a67965ba0?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1267&q=80' }}
-            style={styles.backgroundImage}
-          />
-          <View style={styles.overlay}></View>
-          <View style={styles.container}>
-            <View style={styles.textContainer}>
-              <Text style={styles.title}>Clash of RSE</Text>
-              <Text style={styles.description}>
-                Clash of RSE est une application innovante qui permet aux entreprises de mesurer et d'optimiser leur score RSE (Responsabilité Sociétale des Entreprises). Elle offre un suivi détaillé de l'engagement écologique, social et de gouvernance de chaque collaborateur, tout en fournissant un classement global pour favoriser une compétitivité positive. Grâce à une interface simple et intuitive, l'application permet aux entreprises de visualiser leur impact et d'adopter des stratégies d'amélioration efficaces. Un véritable levier pour devenir un leader de l'engagement responsable !
-              </Text>
-            </View>
+    <SafeAreaView className="flex-1 bg-gray-100">
+      <Navbar />
+
+      <ScrollView>
+        {/* Hero Section */}
+        <View className="relative flex-1 justify-center items-center h-[75vh]">
+          <ImageBackground
+            source={{
+              uri: "https://images.unsplash.com/photo-1557804506-669a67965ba0?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1267&q=80",
+            }}
+            resizeMode="cover"
+            style={StyleSheet.absoluteFillObject}
+          >
+            <View className="absolute inset-0 bg-black opacity-75" />
+          </ImageBackground>
+          <View className="container relative mx-auto px-4">
+            <Text className="text-white text-5xl font-bold text-center">Clash of RSE</Text>
+            <Text className="mt-4 text-blueGray-200 text-center text-lg text-white">
+              Clash of RSE est une application innovante qui permet aux entreprises de mesurer
+              et d'optimiser leur score RSE (Responsabilité Sociétale des Entreprises)...
+            </Text>
           </View>
         </View>
 
-        <View style={styles.section}>
-          <View style={styles.card}>
-            <Icon name="award" size={30} color="#fff" style={styles.icon} />
-            <Text style={styles.cardTitle}>Objectif</Text>
-            <Text style={styles.cardDescription}>
-              L'objectif de Clash of RSE est de permettre aux entreprises de mesurer, classer et optimiser leur score RSE, en suivant l'engagement de chaque collaborateur pour favoriser une compétitivité responsable et durable.
-            </Text>
-          </View>
-
-          <View style={styles.card}>
-            <Icon name="retweet" size={30} color="#fff" style={styles.icon} />
-            <Text style={styles.cardTitle}>Engagement</Text>
-            <Text style={styles.cardDescription}>
-              L'engagement dans Clash of RSE concerne la participation des collaborateurs aux initiatives responsables de l'entreprise, comme la réduction de l'empreinte écologique et la promotion de pratiques durables.
-            </Text>
-          </View>
-
-          <View style={styles.card}>
-            <Icon name="fingerprint" size={30} color="#fff" style={styles.icon} />
-            <Text style={styles.cardTitle}>QR Code</Text>
-            <Text style={styles.cardDescription}>
-              Le QR code permettra de scanner les produits de consommation pour obtenir des informations sur leur impact environnemental et social, favorisant des choix responsables.
-            </Text>
+        {/* Features Section */}
+        <View className="py-10 px-4 bg-gray-200">
+          <View className="flex flex-row flex-wrap justify-around">
+            {/* Feature Card */}
+            <FeatureCard
+              title="Objectif"
+              color="bg-red-400"
+              description="L'objectif de Clash of RSE est de permettre aux entreprises de mesurer, classer et optimiser leur score RSE..."
+            />
+            <FeatureCard
+              title="Engagement"
+              color="bg-lightBlue-400"
+              description="L'engagement dans Clash of RSE concerne la participation des collaborateurs aux initiatives responsables..."
+            />
+            <FeatureCard
+              title="QR Code"
+              color="bg-emerald-400"
+              description="Le QR code permettra de scanner les produits de consommation pour obtenir des informations sur leur impact..."
+            />
           </View>
         </View>
       </ScrollView>
+
       <Footer />
-    </>
+    </SafeAreaView>
   );
 }
 
-const styles = StyleSheet.create({
-  main: {
-    flexGrow: 1,
-  },
-  header: {
-    position: 'relative',
-    height: 350,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  backgroundImage: {
-    width: '100%',
-    height: '100%',
-    resizeMode: 'cover',
-  },
-  overlay: {
-    position: 'absolute',
-    top: 0,
-    left: 0,
-    right: 0,
-    bottom: 0,
-    backgroundColor: 'rgba(0, 0, 0, 0.75)',
-  },
-  container: {
-    position: 'absolute',
-    top: '30%',
-    left: 16,
-    right: 16,
-    textAlign: 'center',
-  },
-  textContainer: {
-    paddingHorizontal: 16,
-  },
-  title: {
-    fontSize: 32,
-    color: '#fff',
-    fontWeight: 'bold',
-  },
-  description: {
-    fontSize: 16,
-    color: '#d1d5db',
-    marginTop: 10,
-  },
-  section: {
-    backgroundColor: '#e5e7eb',
-    paddingVertical: 40,
-    paddingHorizontal: 16,
-  },
-  card: {
-    backgroundColor: '#fff',
-    padding: 16,
-    marginBottom: 16,
-    borderRadius: 10,
-    elevation: 4,
-    shadowColor: '#000',
-    shadowOpacity: 0.1,
-    shadowRadius: 5,
-    alignItems: 'center',
-  },
-  icon: {
-    backgroundColor: '#f97316',
-    borderRadius: 30,
-    padding: 10,
-    marginBottom: 10,
-  },
-  cardTitle: {
-    fontSize: 18,
-    fontWeight: '600',
-    marginBottom: 8,
-    color: '#1f2937',
-  },
-  cardDescription: {
-    fontSize: 14,
-    color: '#4b5563',
-    textAlign: 'center',
-  },
-});
+const FeatureCard = ({ title, color, description }) => (
+  <View className="w-full md:w-[30%] bg-white rounded-lg shadow-lg p-5 my-4">
+    <View className={`w-12 h-12 ${color} rounded-full flex items-center justify-center mb-4`}>
+      <Text className="text-white text-xl font-bold">{title[0]}</Text>
+    </View>
+    <Text className="text-xl font-semibold">{title}</Text>
+    <Text className="mt-2 text-gray-600">{description}</Text>
+  </View>
+);
