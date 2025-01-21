@@ -8,7 +8,6 @@ const DefiForm = () => {
     name: '',
     email: '',
     activity: '',
-    duration: '',
     feedback: '',
   });
 
@@ -28,31 +27,25 @@ const DefiForm = () => {
   return (
     <form onSubmit={handleSubmit} className="flex flex-col gap-6 px-4 py-8 bg-white shadow-lg rounded-lg">
       <label className="block text-lg font-medium text-blueGray-700">
-        Nom de l'auteur du défi:
+        Nom  du défi:
         <input type="text" name="author" value={formData.author} onChange={handleChange} className="mt-1 p-2 block w-full shadow-sm sm:text-sm border border-gray-300 rounded-md" />
       </label>
       <label className="block text-lg font-medium text-blueGray-700">
-        Nom du participant:
+        L'objectif du Defi:
         <input type="text" name="name" value={formData.name} onChange={handleChange} className="mt-1 p-2 block w-full shadow-sm sm:text-sm border border-gray-300 rounded-md" />
       </label>
-      <label className="block text-lg font-medium text-blueGray-700">
-        Email:
-        <input type="email" name="email" value={formData.email} onChange={handleChange} className="mt-1 p-2 block w-full shadow-sm sm:text-sm border border-gray-300 rounded-md" />
-      </label>
+     
       <label className="block text-lg font-medium text-blueGray-700">
         Défi à réalisée:
         <input type="text" name="activity" value={formData.activity} onChange={handleChange} className="mt-1 p-2 block w-full shadow-sm sm:text-sm border border-gray-300 rounded-md" />
       </label>
-      <label className="block text-lg font-medium text-blueGray-700">
-        Durée de l'activité (en minutes):
-        <input type="number" name="duration" value={formData.duration} onChange={handleChange} className="mt-1 p-2 block w-full shadow-sm sm:text-sm border border-gray-300 rounded-md" />
-      </label>
+    
       <input type="submit" value="Envoyer" className="mt-4 bg-lightBlue-500 hover:bg-lightBlue-600 text-white font-bold py-2 px-4 rounded-md shadow-md cursor-pointer" />
     </form>
   );
 };
 
-const DefiPage = () => {
+const Defi = () => {
   const [submittedData, setSubmittedData] = useState(null);
 
   const handleFormSubmit = (formData) => {
@@ -123,10 +116,7 @@ const DefiPage = () => {
                     <i className="fas fa-calendar-alt mr-2 text-lg text-blueGray-400"></i>{" "}
                     Date de réalisation
                   </div>
-                  <div className="mb-2 text-blueGray-600 mt-10">
-                    <i className="fas fa-clock mr-2 text-lg text-blueGray-400"></i>
-                    Temps pour le réaliser
-                  </div>
+                 
                 </div>
                 <div className="mt-10 py-10 border-t border-blueGray-200 text-center">
                   <div className="flex flex-wrap justify-center">
@@ -160,4 +150,4 @@ const DefiPage = () => {
   );
 };
 
-export default DefiPage;
+export default Defi;

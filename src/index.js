@@ -13,7 +13,8 @@ import Auth from "layouts/Auth.js";
 import Landing from "views/Landing.js";
 import Profile from "views/Profile/Profile.js";
 import Index from "views/Index.js";
-import DefiForm from "views/Compte Admin/Défis/DefiForm";
+import DefiPage from "views/Compte Admin/Défis/DefiPage";
+import DefiForm from "views/Compte Admin/Défis/DefiForm.js";
 import RoleAssignmentPage from "views/Compte Admin/Role/RoleAssignmentForm"; // Ajoute cette ligne
 import ProfileCustomizationPage from "views/Compte Admin/ProfileCustomizationForm/ProfileCustomizationForm";
 ReactDOM.render(
@@ -25,7 +26,8 @@ ReactDOM.render(
       {/* add routes without layouts */}
       <Route path="/landing" exact component={Landing} />
       <Route path="/profile" exact component={Profile} />
-      <Route path="/DefiForm" exact component={DefiForm} /> {/* Corrige la route */}
+      <Route path="/DefiPage" exact component={DefiPage} /> {/* Corrige la route */}
+      <Route path="/defiForm" exact component={DefiForm} /> {/* Corrige la route */}
       <Route path="/RoleAssignmentPage" exact component={RoleAssignmentPage} /> {/* Corrige la route */}
       <Route path="/ProfileCustomizationPage" exact component={ProfileCustomizationPage} /> {/* Corrige la route */}
 
