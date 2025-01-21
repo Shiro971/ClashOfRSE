@@ -19,7 +19,6 @@ const RoleAssignmentForm = ({ onSubmit }) => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    onSubmit(formData);
   };
 
   return (
