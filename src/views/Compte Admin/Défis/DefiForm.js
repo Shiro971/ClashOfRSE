@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import Navbar from 'components/Navbars/AuthNavbar.js';
 import Footer from 'components/Footers/Footer.js';
 
-const DefiForm = ({ onSubmit }) => {
+const DefiForm = () => {
   const [formData, setFormData] = useState({
     author: '',
     name: '',
@@ -22,7 +22,7 @@ const DefiForm = ({ onSubmit }) => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    onSubmit(formData);
+    
   };
 
   return (

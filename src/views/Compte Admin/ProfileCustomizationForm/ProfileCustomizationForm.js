@@ -20,7 +20,6 @@ const ProfileCustomizationForm = ({ onSubmit }) => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    onSubmit(formData);
   };
 
   return (
