@@ -13,7 +13,7 @@ import Auth from "layouts/Auth.js";
 import Landing from "views/Landing.js";
 import Profile from "views/Profile/Profile.js";
 import Index from "views/Index.js";
-import DefiForm from "views/Compte Admin/Défis/DefiForm";
+import DefiForm from "views/DefiForm";
 ReactDOM.render(
   <BrowserRouter>
     <Switch>
