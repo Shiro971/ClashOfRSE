@@ -1,19 +1,35 @@
 import React from "react";
+import { View, StyleSheet, ScrollView } from "react-native";
 
-// components
-
-import MapExample from "components/Maps/MapExample.js";
+// Components
+import MapExample from "../../components/Maps/MapExample";
 
 export default function Maps() {
   return (
-    <>
-      <div className="flex flex-wrap">
-        <div className="w-full px-4">
-          <div className="relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-lg rounded">
-            <MapExample />
-          </div>
-        </div>
-      </div>
-    </>
+    <ScrollView contentContainerStyle={styles.container}>
+      <View style={styles.mapContainer}>
+        <MapExample />
+      </View>
+    </ScrollView>
   );
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flexGrow: 1,
+    justifyContent: "center",
+    alignItems: "center",
+    padding: 16,
+  },
+  mapContainer: {
+    width: "100%",
+    height: 300,  // Set the height of the map container
+    marginBottom: 16,
+    backgroundColor: "white",
+    borderRadius: 8,
+    shadowColor: "#000",
+    shadowOffset: { width: 0, height: 4 },
+    shadowOpacity: 0.1,
+    shadowRadius: 6,
+  },
+});

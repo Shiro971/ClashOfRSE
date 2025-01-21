@@ -1,49 +1,41 @@
 {
-  "name": "notus-react",
-  "version": "1.1.0",
-  "description": "Notus React - A free Tailwind CSS and React UI Kit and Admin by Creative Tim.",
-  "repository": "https://github.com/creativetimofficial/notus-react",
-  "license": "MIT",
+  "name": "clashofrse",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "start": "expo start",
+    "android": "expo start --android",
+    "ios": "expo start --ios",
+    "web": "expo start --web"
+  },
   "dependencies": {
-    "@fortawesome/fontawesome-free": "5.15.3",
-    "@popperjs/core": "2.9.1",
-    "@tailwindcss/forms": "0.2.1",
-    "autoprefixer": "10.2.5",
-    "chart.js": "2.9.4",
-    "gulp": "4.0.2",
-    "gulp-append-prepend": "1.0.8",
-    "postcss": "8.4.39",
+    "@expo/metro-runtime": "~4.0.1",
+    "@fortawesome/fontawesome-free": "^6.7.2",
+    "@popperjs/core": "^2.11.8",
+    "@react-navigation/drawer": "^7.1.1",
+    "@react-navigation/native": "^7.0.14",
+    "@react-navigation/stack": "^7.1.1",
+    "chart.js": "^4.4.7",
+    "expo": "~52.0.26",
+    "expo-status-bar": "~2.0.1",
+    "leaflet": "^1.9.4",
     "react": "18.3.1",
     "react-dom": "18.3.1",
-    "react-router": "5.3.4",
-    "react-router-dom": "5.3.4",
-    "react-scripts": "5.0.1",
-    "tailwindcss": "2.0.4"
+    "react-native": "0.76.6",
+    "react-native-chart-kit": "^6.12.0",
+    "react-native-gesture-handler": "^2.20.2",
+    "react-native-reanimated": "^3.16.7",
+    "react-native-safe-area-context": "^4.12.0",
+    "react-native-screens": "^4.4.0",
+    "react-native-svg": "^15.8.0",
+    "react-native-vector-icons": "^10.2.0",
+    "react-native-web": "~0.19.13",
+    "react-native-webview": "^13.12.5",
+    "react-router-dom": "^6.28.2"
   },
-  "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build && gulp licenses",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject",
-    "install:clean": "rm -rf node_modules/ && rm -rf package-lock.json && npm install && npm run build:tailwind && npm start",
-    "build:tailwind": "tailwind build src/assets/styles/index.css -o src/assets/styles/tailwind.css"
+  "devDependencies": {
+    "@babel/core": "^7.20.0",
+    "@react-native-community/cli": "latest"
   },
-  "eslintConfig": {
-    "extends": "react-app"
-  },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
-  },
-  "optionalDependencies": {
-    "typescript": "4.2.3"
-  }
+  "private": true
 }

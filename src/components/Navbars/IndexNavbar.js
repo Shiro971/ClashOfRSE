@@ -1,55 +1,86 @@
-/*eslint-disable*/
 import React from "react";
-import { Link } from "react-router-dom";
-// components
+import { View, Text, TextInput, TouchableOpacity, StyleSheet } from "react-native";
+import { useNavigation } from "@react-navigation/native";
+import Icon from "react-native-vector-icons/FontAwesome"; // For icons
+import UserDropdown from "../Dropdowns/UserDropdown"; // Assuming this is your custom component
 
-import IndexDropdown from "components/Dropdowns/IndexDropdown.js";
+export default function Navbar() {
+  const navigation = useNavigation();
 
-export default function Navbar(props) {
-  const [navbarOpen, setNavbarOpen] = React.useState(false);
   return (
-    <>
-      <nav className="top-0 fixed z-50 w-full flex flex-wrap items-center justify-between px-2 py-3 navbar-expand-lg bg-white shadow">
-        <div className="container px-4 mx-auto flex flex-wrap items-center justify-between">
-          <div className="w-full relative flex justify-between lg:w-auto lg:static lg:block lg:justify-start">
-            <Link
-              to="/"
-              className="text-blueGray-700 text-sm font-bold leading-relaxed inline-block mr-4 py-2 whitespace-nowrap uppercase"
-            >
-              ClashOfRSE
-            </Link>
-            <button
-              className="cursor-pointer text-xl leading-none px-3 py-1 border border-solid border-transparent rounded bg-transparent block lg:hidden outline-none focus:outline-none"
-              type="button"
-              onClick={() => setNavbarOpen(!navbarOpen)}
-            >
-              <i className="fas fa-bars"></i>
-            </button>
-          </div>
-          <div
-            className={
-              "lg:flex flex-grow items-center bg-white lg:bg-opacity-0 lg:shadow-none" +
-              (navbarOpen ? " block" : " hidden")
-            }
-            id="example-navbar-warning"
-          >
-            <ul className="flex flex-col lg:flex-row list-none lg:ml-auto">
-              <li className="flex items-center">
-                <IndexDropdown />
-              </li>
+    <View style={styles.navbar}>
+      <View style={styles.container}>
+        {/* Brand */}
+        <TouchableOpacity onPress={() => navigation.navigate("Dashboard")}>
+          <Text style={styles.brandText}>Dashboard</Text>
+        </TouchableOpacity>
 
-              <li className="flex items-center">
-                <button
-                  className="bg-lightBlue-500 text-white active:bg-lightBlue-600 text-xs font-bold uppercase px-4 py-2 rounded shadow hover:shadow-lg outline-none focus:outline-none lg:mr-1 lg:mb-0 ml-3 mb-3 ease-linear transition-all duration-150"
-                  type="button"
-                >
-                  <i className="fas fa-arrow-alt-circle-down"></i> Download
-                </button>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </nav>
-    </>
+        {/* Search Form */}
+        <View style={styles.searchContainer}>
+          <Icon name="search" size={20} style={styles.searchIcon} />
+          <TextInput
+            style={styles.searchInput}
+            placeholder="Search here..."
+            placeholderTextColor="#A0AEC0"
+          />
+        </View>
+
+        {/* User Dropdown */}
+        <View style={styles.userDropdown}>
+          <UserDropdown />
+        </View>
+      </View>
+    </View>
   );
 }
+
+const styles = StyleSheet.create({
+  navbar: {
+    position: "absolute",
+    top: 0,
+    left: 0,
+    right: 0,
+    zIndex: 10,
+    backgroundColor: "transparent",
+    paddingVertical: 16,
+    paddingHorizontal: 16,
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+  },
+  container: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+    width: "100%",
+  },
+  brandText: {
+    color: "white",
+    fontSize: 14,
+    fontWeight: "600",
+    textTransform: "uppercase",
+  },
+  searchContainer: {
+    flexDirection: "row",
+    alignItems: "center",
+    backgroundColor: "white",
+    borderRadius: 24,
+    paddingHorizontal: 12,
+    width: 250,
+    marginLeft: "auto",
+  },
+  searchIcon: {
+    color: "#A0AEC0",
+  },
+  searchInput: {
+    flex: 1,
+    paddingVertical: 8,
+    paddingHorizontal: 10,
+    fontSize: 14,
+    color: "#4A5568",
+    backgroundColor: "transparent",
+  },
+  userDropdown: {
+    marginLeft: 16,
+  },
+});

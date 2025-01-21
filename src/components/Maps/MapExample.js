@@ -1,90 +1,71 @@
 import React from "react";
+import { Platform, View, StyleSheet } from "react-native";
+import { WebView } from "react-native-webview"; // For WebView rendering on mobile
 
-function MapExample() {
-  const mapRef = React.useRef(null);
-  React.useEffect(() => {
-    let google = window.google;
-    let map = mapRef.current;
-    let lat = "40.748817";
-    let lng = "-73.985428";
-    const myLatlng = new google.maps.LatLng(lat, lng);
-    const mapOptions = {
-      zoom: 12,
-      center: myLatlng,
-      scrollwheel: false,
-      zoomControl: true,
-      styles: [
-        {
-          featureType: "administrative",
-          elementType: "labels.text.fill",
-          stylers: [{ color: "#444444" }],
-        },
-        {
-          featureType: "landscape",
-          elementType: "all",
-          stylers: [{ color: "#f2f2f2" }],
-        },
-        {
-          featureType: "poi",
-          elementType: "all",
-          stylers: [{ visibility: "off" }],
-        },
-        {
-          featureType: "road",
-          elementType: "all",
-          stylers: [{ saturation: -100 }, { lightness: 45 }],
-        },
-        {
-          featureType: "road.highway",
-          elementType: "all",
-          stylers: [{ visibility: "simplified" }],
-        },
-        {
-          featureType: "road.arterial",
-          elementType: "labels.icon",
-          stylers: [{ visibility: "off" }],
-        },
-        {
-          featureType: "transit",
-          elementType: "all",
-          stylers: [{ visibility: "off" }],
-        },
-        {
-          featureType: "water",
-          elementType: "all",
-          stylers: [{ color: "#4299e1" }, { visibility: "on" }],
-        },
-      ],
-    };
+const MapExample = () => {
+  const latitude = 40.748817;
+  const longitude = -73.985428;
 
-    map = new google.maps.Map(map, mapOptions);
+  // Check the platform and render appropriate map
+  return <LeafletMap latitude={latitude} longitude={longitude} />;
+};
 
-    const marker = new google.maps.Marker({
-      position: myLatlng,
-      map: map,
-      animation: google.maps.Animation.DROP,
-      title: "Notus React!",
-    });
+const LeafletMap = ({ latitude, longitude }) => {
+  const mapHtml = `
+    <html>
+      <head>
+        <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css"/>
+        <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+        <style>
+          #map {
+            height: 100%;
+            width: 100%;
+          }
+        </style>
+      </head>
+      <body>
+        <div id="map"></div>
+        <script>
+          var map = L.map('map').setView([${latitude}, ${longitude}], 13);
+          
+          L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+          }).addTo(map);
 
-    const contentString =
-      '<div class="info-window-content"><h2>Notus React</h2>' +
-      "<p>A free Admin for Tailwind CSS, React, and React Hooks.</p></div>";
+          L.marker([${latitude}, ${longitude}]).addTo(map)
+            .bindPopup("Notus React!<br>A free Admin for Tailwind CSS, React, and React Hooks.")
+            .openPopup();
+        </script>
+      </body>
+    </html>
+  `;
 
-    const infowindow = new google.maps.InfoWindow({
-      content: contentString,
-    });
+  if (Platform.OS === "web") {
+    // Render directly on web without WebView
+    return (
+      <div id="map" style={{ height: "100%", width: "100%" }}></div>
+    );
+  }
 
-    google.maps.event.addListener(marker, "click", function () {
-      infowindow.open(map, marker);
-    });
-  });
+  // For mobile, render using WebView
   return (
-    <>
-      <div className="relative w-full rounded h-600-px">
-        <div className="rounded h-full" ref={mapRef} />
-      </div>
-    </>
+    <View style={styles.container}>
+      <WebView
+        originWhitelist={["*"]}
+        source={{ html: mapHtml }}
+        style={styles.map}
+      />
+    </View>
   );
-}
+};
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+  },
+  map: {
+    flex: 1,
+  },
+});
 
 export default MapExample;

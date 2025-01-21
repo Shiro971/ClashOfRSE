@@ -1,88 +1,103 @@
-import React from "react";
-import { createPopper } from "@popperjs/core";
+import React, { useState } from "react";
+import { View, Text, TouchableOpacity, Modal, StyleSheet, Image } from "react-native";
 
 const UserDropdown = () => {
-  // dropdown props
-  const [dropdownPopoverShow, setDropdownPopoverShow] = React.useState(false);
-  const btnDropdownRef = React.createRef();
-  const popoverDropdownRef = React.createRef();
-  const openDropdownPopover = () => {
-    createPopper(btnDropdownRef.current, popoverDropdownRef.current, {
-      placement: "bottom-start",
-    });
-    setDropdownPopoverShow(true);
+  const [dropdownPopoverShow, setDropdownPopoverShow] = useState(false);
+
+  const toggleDropdown = () => {
+    setDropdownPopoverShow(!dropdownPopoverShow);
   };
-  const closeDropdownPopover = () => {
-    setDropdownPopoverShow(false);
-  };
+
   return (
-    <>
-      <a
-        className="text-blueGray-500 block"
-        href="#pablo"
-        ref={btnDropdownRef}
-        onClick={(e) => {
-          e.preventDefault();
-          dropdownPopoverShow ? closeDropdownPopover() : openDropdownPopover();
-        }}
-      >
-        <div className="items-center flex">
-          <span className="w-12 h-12 text-sm text-white bg-blueGray-200 inline-flex items-center justify-center rounded-full">
-            <img
-              alt="..."
-              className="w-full rounded-full align-middle border-none shadow-lg"
-              src={require("assets/img/team-1-800x800.jpg").default}
-            />
-          </span>
-        </div>
-      </a>
-      <div
-        ref={popoverDropdownRef}
-        className={
-          (dropdownPopoverShow ? "block " : "hidden ") +
-          "bg-white text-base z-50 float-left py-2 list-none text-left rounded shadow-lg min-w-48"
-        }
-      >
-        <a
-          href="#pablo"
-          className={
-            "text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-blueGray-700"
-          }
-          onClick={(e) => e.preventDefault()}
+    <View style={styles.container}>
+      {/* Profile Button */}
+      <TouchableOpacity onPress={toggleDropdown} style={styles.profileButton}>
+        <View style={styles.profileImageWrapper}>
+          <Image
+            source={require("../../assets/img/team-1-800x800.jpg")} // Use your image
+            style={styles.profileImage}
+          />
+        </View>
+      </TouchableOpacity>
+
+      {/* Dropdown Modal */}
+      {dropdownPopoverShow && (
+        <Modal
+          transparent={true}
+          animationType="fade"
+          visible={dropdownPopoverShow}
+          onRequestClose={() => setDropdownPopoverShow(false)}
         >
-          Action
-        </a>
-        <a
-          href="#pablo"
-          className={
-            "text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-blueGray-700"
-          }
-          onClick={(e) => e.preventDefault()}
-        >
-          Another action
-        </a>
-        <a
-          href="#pablo"
-          className={
-            "text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-blueGray-700"
-          }
-          onClick={(e) => e.preventDefault()}
-        >
-          Something else here
-        </a>
-        <div className="h-0 my-2 border border-solid border-blueGray-100" />
-        <a
-          href="#pablo"
-          className={
-            "text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-blueGray-700"
-          }
-          onClick={(e) => e.preventDefault()}
-        >
-          Seprated link
-        </a>
-      </div>
-    </>
+          <TouchableOpacity style={styles.modalBackground} onPress={() => setDropdownPopoverShow(false)}>
+            <View style={styles.dropdown}>
+              <TouchableOpacity style={styles.dropdownItem} onPress={() => alert("Action clicked")}>
+                <Text style={styles.dropdownText}>Action</Text>
+              </TouchableOpacity>
+              <TouchableOpacity style={styles.dropdownItem} onPress={() => alert("Another action clicked")}>
+                <Text style={styles.dropdownText}>Another action</Text>
+              </TouchableOpacity>
+              <TouchableOpacity style={styles.dropdownItem} onPress={() => alert("Something else clicked")}>
+                <Text style={styles.dropdownText}>Something else here</Text>
+              </TouchableOpacity>
+              <View style={styles.separator} />
+              <TouchableOpacity style={styles.dropdownItem} onPress={() => alert("Separated link clicked")}>
+                <Text style={styles.dropdownText}>Separated link</Text>
+              </TouchableOpacity>
+            </View>
+          </TouchableOpacity>
+        </Modal>
+      )}
+    </View>
   );
 };
+
+const styles = StyleSheet.create({
+  container: {
+    position: "relative",
+  },
+  profileButton: {
+    paddingHorizontal: 10,
+    paddingVertical: 5,
+  },
+  profileImageWrapper: {
+    width: 48,
+    height: 48,
+    backgroundColor: "#A0AEC0", // Equivalent to bg-blueGray-200
+    borderRadius: 24,
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  profileImage: {
+    width: "100%",
+    height: "100%",
+    borderRadius: 24,
+  },
+  modalBackground: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+    backgroundColor: "rgba(0, 0, 0, 0.5)", // Semi-transparent background
+  },
+  dropdown: {
+    backgroundColor: "white",
+    width: 200,
+    borderRadius: 8,
+    paddingVertical: 10,
+    paddingHorizontal: 15,
+    elevation: 5,
+  },
+  dropdownItem: {
+    paddingVertical: 10,
+  },
+  dropdownText: {
+    fontSize: 14,
+    color: "#4A5568", // Equivalent to text-blueGray-700
+  },
+  separator: {
+    height: 1,
+    backgroundColor: "#E2E8F0", // Equivalent to border-blueGray-100
+    marginVertical: 10,
+  },
+});
 
 export default UserDropdown;

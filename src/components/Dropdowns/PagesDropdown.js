@@ -1,58 +1,89 @@
-import React from "react";
-import { Link } from "react-router-dom";
-import { createPopper } from "@popperjs/core";
+import React, { useState } from "react";
+import { View, Text, TouchableOpacity, Modal, StyleSheet, ScrollView } from "react-native";
+import { Ionicons } from "@expo/vector-icons";
 
 const PagesDropdown = () => {
-  // dropdown props
-  const [dropdownPopoverShow, setDropdownPopoverShow] = React.useState(false);
-  const btnDropdownRef = React.createRef();
-  const popoverDropdownRef = React.createRef();
-  const openDropdownPopover = () => {
-    createPopper(btnDropdownRef.current, popoverDropdownRef.current, {
-      placement: "bottom-start",
-    });
-    setDropdownPopoverShow(true);
+  const [dropdownPopoverShow, setDropdownPopoverShow] = useState(false);
+
+  const toggleDropdown = () => {
+    setDropdownPopoverShow(!dropdownPopoverShow);
   };
-  const closeDropdownPopover = () => {
-    setDropdownPopoverShow(false);
-  };
+
   return (
-    <>
-      <a
-        className="lg:text-white lg:hover:text-blueGray-200 text-blueGray-700 px-3 py-4 lg:py-2 flex items-center text-xs uppercase font-bold"
-        href="#pablo"
-        ref={btnDropdownRef}
-        onClick={(e) => {
-          e.preventDefault();
-          dropdownPopoverShow ? closeDropdownPopover() : openDropdownPopover();
-        }}
-      >
-        Compte
-      </a>
-      <div
-        ref={popoverDropdownRef}
-        className={
-          (dropdownPopoverShow ? "block " : "hidden ") +
-          "bg-white text-base z-50 float-left py-2 list-none text-left rounded shadow-lg min-w-48"
-        }
-      >
-        <Link
-          to="/auth/login"
-          className="text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-blueGray-700"
+    <View style={styles.container}>
+      {/* Button to open dropdown */}
+      <TouchableOpacity onPress={toggleDropdown} style={styles.dropdownButton}>
+        <Text style={styles.buttonText}>Compte</Text>
+      </TouchableOpacity>
+
+      {/* Dropdown menu */}
+      {dropdownPopoverShow && (
+        <Modal
+          transparent={true}
+          animationType="fade"
+          visible={dropdownPopoverShow}
+          onRequestClose={() => setDropdownPopoverShow(false)}
         >
-          Se connecter
-        </Link>
-        <Link
-          to="/auth/register"
-          className="text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-blueGray-700"
-        >
-          S'inscrire
-        </Link>
-        <div className="h-0 mx-4 my-2 border border-solid border-blueGray-100" />
-        
-      </div>
-    </>
+          <TouchableOpacity style={styles.modalBackground} onPress={() => setDropdownPopoverShow(false)}>
+            <View style={styles.dropdown}>
+              <ScrollView>
+                <TouchableOpacity style={styles.dropdownItem} onPress={() => alert("Se connecter")}>
+                  <Text style={styles.dropdownText}>Se connecter</Text>
+                </TouchableOpacity>
+                <TouchableOpacity style={styles.dropdownItem} onPress={() => alert("S'inscrire")}>
+                  <Text style={styles.dropdownText}>S'inscrire</Text>
+                </TouchableOpacity>
+                <View style={styles.separator} />
+              </ScrollView>
+            </View>
+          </TouchableOpacity>
+        </Modal>
+      )}
+    </View>
   );
 };
+
+const styles = StyleSheet.create({
+  container: {
+    position: "relative",
+  },
+  dropdownButton: {
+    paddingHorizontal: 15,
+    paddingVertical: 10,
+    backgroundColor: "#4A90E2", // Customize as needed
+    borderRadius: 5,
+  },
+  buttonText: {
+    color: "white",
+    fontSize: 16,
+    fontWeight: "bold",
+  },
+  modalBackground: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+    backgroundColor: "rgba(0, 0, 0, 0.5)", // Semi-transparent background
+  },
+  dropdown: {
+    backgroundColor: "white",
+    width: 200,
+    borderRadius: 8,
+    paddingVertical: 10,
+    paddingHorizontal: 15,
+    elevation: 5,
+  },
+  dropdownItem: {
+    paddingVertical: 10,
+  },
+  dropdownText: {
+    fontSize: 14,
+    color: "#555",
+  },
+  separator: {
+    height: 1,
+    backgroundColor: "#ddd",
+    marginVertical: 10,
+  },
+});
 
 export default PagesDropdown;

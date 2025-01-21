@@ -1,142 +1,168 @@
 import React from "react";
-
-import Navbar from "components/Navbars/AuthNavbar.js";
-import Footer from "components/Footers/Footer.js";
+import { View, Text, Image, Button, StyleSheet, TouchableOpacity } from "react-native";
+import Navbar from "../components/Navbars/AuthNavbar"; // Make sure to adapt the Navbar for React Native
+import Footer from "../components/Footers/Footer"; // Make sure to adapt the Footer for React Native
 
 export default function Profile() {
   return (
     <>
       <Navbar transparent />
-      <main className="profile-page">
-        <section className="relative block h-500-px">
-          <div
-            className="absolute top-0 w-full h-full bg-center bg-cover"
-            style={{
-              backgroundImage:
-                "url('https://images.unsplash.com/photo-1499336315816-097655dcfbda?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2710&q=80')",
-            }}
-          >
-            <span
-              id="blackOverlay"
-              className="w-full h-full absolute opacity-50 bg-black"
-            ></span>
-          </div>
-          <div
-            className="top-auto bottom-0 left-0 right-0 w-full absolute pointer-events-none overflow-hidden h-70-px"
-            style={{ transform: "translateZ(0)" }}
-          >
-            <svg
-              className="absolute bottom-0 overflow-hidden"
-              xmlns="http://www.w3.org/2000/svg"
-              preserveAspectRatio="none"
-              version="1.1"
-              viewBox="0 0 2560 100"
-              x="0"
-              y="0"
-            >
-              <polygon
-                className="text-blueGray-200 fill-current"
-                points="2560 0 2560 100 0 100"
-              ></polygon>
-            </svg>
-          </div>
-        </section>
-        <section className="relative py-16 bg-blueGray-200">
-          <div className="container mx-auto px-4">
-            <div className="relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-xl rounded-lg -mt-64">
-              <div className="px-6">
-                <div className="flex flex-wrap justify-center">
-                  <div className="w-full lg:w-3/12 px-4 lg:order-2 flex justify-center">
-                    <div className="relative">
-                      <img
-                        alt="..."
-                        src={require("assets/img/team-2-800x800.jpg").default}
-                        className="shadow-xl rounded-full h-auto align-middle border-none absolute -m-16 -ml-20 lg:-ml-16 max-w-150-px"
-                      />
-                    </div>
-                  </div>
-                  <div className="w-full lg:w-4/12 px-4 lg:order-3 lg:text-right lg:self-center">
-                    <div className="py-6 px-3 mt-32 sm:mt-0">
-                      <button
-                        className="bg-lightBlue-500 active:bg-lightBlue-600 uppercase text-white font-bold hover:shadow-md shadow text-xs px-4 py-2 rounded outline-none focus:outline-none sm:mr-2 mb-1 ease-linear transition-all duration-150"
-                        type="button"
-                      >
-                        Connect
-                      </button>
-                    </div>
-                  </div>
-                  <div className="w-full lg:w-4/12 px-4 lg:order-1">
-                    <div className="flex justify-center py-4 lg:pt-4 pt-8">
-                      <div className="mr-4 p-3 text-center">
-                        <span className="text-xl font-bold block uppercase tracking-wide text-blueGray-600">
-                          22
-                        </span>
-                        <span className="text-sm text-blueGray-400">
-                          Friends
-                        </span>
-                      </div>
-                      <div className="mr-4 p-3 text-center">
-                        <span className="text-xl font-bold block uppercase tracking-wide text-blueGray-600">
-                          10
-                        </span>
-                        <span className="text-sm text-blueGray-400">
-                          Photos
-                        </span>
-                      </div>
-                      <div className="lg:mr-4 p-3 text-center">
-                        <span className="text-xl font-bold block uppercase tracking-wide text-blueGray-600">
-                          89
-                        </span>
-                        <span className="text-sm text-blueGray-400">
-                          Comments
-                        </span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div className="text-center mt-12">
-                  <h3 className="text-4xl font-semibold leading-normal mb-2 text-blueGray-700 mb-2">
-                    Jenna Stones
-                  </h3>
-                  <div className="text-sm leading-normal mt-0 mb-2 text-blueGray-400 font-bold uppercase">
-                    <i className="fas fa-map-marker-alt mr-2 text-lg text-blueGray-400"></i>{" "}
-                    Los Angeles, California
-                  </div>
-                  <div className="mb-2 text-blueGray-600 mt-10">
-                    <i className="fas fa-briefcase mr-2 text-lg text-blueGray-400"></i>
-                    Solution Manager - Creative Tim Officer
-                  </div>
-                  <div className="mb-2 text-blueGray-600">
-                    <i className="fas fa-university mr-2 text-lg text-blueGray-400"></i>
-                    University of Computer Science
-                  </div>
-                </div>
-                <div className="mt-10 py-10 border-t border-blueGray-200 text-center">
-                  <div className="flex flex-wrap justify-center">
-                    <div className="w-full lg:w-9/12 px-4">
-                      <p className="mb-4 text-lg leading-relaxed text-blueGray-700">
-                        An artist of considerable range, Jenna the name taken by
-                        Melbourne-raised, Brooklyn-based Nick Murphy writes,
-                        performs and records all of his own music, giving it a
-                        warm, intimate feel with a solid groove structure. An
-                        artist of considerable range.
-                      </p>
-                      <a
-                        href="#pablo"
-                        className="font-normal text-lightBlue-500"
-                        onClick={(e) => e.preventDefault()}
-                      >
-                        Show more
-                      </a>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-      </main>
+      <View style={styles.profilePage}>
+        <View style={styles.coverImageWrapper}>
+          <Image
+            source={{ uri: 'https://images.unsplash.com/photo-1499336315816-097655dcfbda?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2710&q=80' }}
+            style={styles.coverImage}
+          />
+          <View style={styles.overlay}></View>
+        </View>
+        <View style={styles.profileCard}>
+          <View style={styles.profilePictureWrapper}>
+            <Image
+              source={require("../assets/img/team-2-800x800.jpg")}
+              style={styles.profilePicture}
+            />
+          </View>
+          <View style={styles.profileInfo}>
+            <Text style={styles.name}>Jenna Stones</Text>
+            <Text style={styles.location}>Los Angeles, California</Text>
+            <Text style={styles.jobTitle}>
+              Solution Manager - Creative Tim Officer
+            </Text>
+            <Text style={styles.education}>
+              University of Computer Science
+            </Text>
+            <View style={styles.stats}>
+              <View style={styles.stat}>
+                <Text style={styles.statNumber}>22</Text>
+                <Text style={styles.statLabel}>Friends</Text>
+              </View>
+              <View style={styles.stat}>
+                <Text style={styles.statNumber}>10</Text>
+                <Text style={styles.statLabel}>Photos</Text>
+              </View>
+              <View style={styles.stat}>
+                <Text style={styles.statNumber}>89</Text>
+                <Text style={styles.statLabel}>Comments</Text>
+              </View>
+            </View>
+            <Button title="Connect" onPress={() => {}} />
+          </View>
+        </View>
+        <View style={styles.about}>
+          <Text style={styles.aboutText}>
+            An artist of considerable range, Jenna the name taken by Melbourne-raised, Brooklyn-based Nick Murphy writes, performs and records all of his own music, giving it a warm, intimate feel with a solid groove structure. An artist of considerable range.
+          </Text>
+          <TouchableOpacity onPress={() => {}}>
+            <Text style={styles.showMore}>Show more</Text>
+          </TouchableOpacity>
+        </View>
+      </View>
       <Footer />
     </>
   );
 }
+
+const styles = StyleSheet.create({
+  profilePage: {
+    flex: 1,
+    backgroundColor: "#f8f9fa",
+  },
+  coverImageWrapper: {
+    height: 500,
+    position: "relative",
+  },
+  coverImage: {
+    width: "100%",
+    height: "100%",
+    resizeMode: "cover",
+  },
+  overlay: {
+    position: "absolute",
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
+    backgroundColor: "rgba(0, 0, 0, 0.5)",
+  },
+  profileCard: {
+    marginTop: -64,
+    backgroundColor: "#fff",
+    borderRadius: 10,
+    marginHorizontal: 16,
+    shadowColor: "#000",
+    shadowOffset: { width: 0, height: 4 },
+    shadowOpacity: 0.1,
+    shadowRadius: 6,
+    elevation: 4,
+    padding: 16,
+  },
+  profilePictureWrapper: {
+    position: "absolute",
+    top: -64,
+    left: "50%",
+    transform: [{ translateX: -75 }],
+  },
+  profilePicture: {
+    width: 150,
+    height: 150,
+    borderRadius: 75,
+    borderWidth: 4,
+    borderColor: "#fff",
+  },
+  profileInfo: {
+    marginTop: 64,
+    alignItems: "center",
+  },
+  name: {
+    fontSize: 24,
+    fontWeight: "bold",
+    color: "#343a40",
+  },
+  location: {
+    fontSize: 14,
+    color: "#868e96",
+    marginTop: 4,
+  },
+  jobTitle: {
+    fontSize: 16,
+    color: "#343a40",
+    marginTop: 4,
+  },
+  education: {
+    fontSize: 14,
+    color: "#343a40",
+    marginTop: 4,
+  },
+  stats: {
+    flexDirection: "row",
+    marginTop: 16,
+    justifyContent: "center",
+  },
+  stat: {
+    alignItems: "center",
+    marginHorizontal: 16,
+  },
+  statNumber: {
+    fontSize: 24,
+    fontWeight: "bold",
+    color: "#343a40",
+  },
+  statLabel: {
+    fontSize: 12,
+    color: "#868e96",
+  },
+  about: {
+    paddingHorizontal: 16,
+    marginTop: 32,
+  },
+  aboutText: {
+    fontSize: 16,
+    color: "#343a40",
+    lineHeight: 24,
+  },
+  showMore: {
+    color: "#007bff",
+    fontSize: 16,
+    marginTop: 8,
+  },
+});

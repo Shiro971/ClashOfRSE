@@ -1,20 +1,36 @@
 import React from "react";
+import { View, StyleSheet, ScrollView } from "react-native";
 
-// components
-
-import CardTable from "components/Cards/CardTable.js";
+// Components
+import CardTable from "../../components/Cards/CardTable";
 
 export default function Tables() {
   return (
-    <>
-      <div className="flex flex-wrap mt-4">
-        <div className="w-full mb-12 px-4">
+    <ScrollView contentContainerStyle={styles.container}>
+      <View style={styles.row}>
+        <View style={styles.cardContainer}>
           <CardTable />
-        </div>
-        <div className="w-full mb-12 px-4">
+        </View>
+        <View style={styles.cardContainer}>
           <CardTable color="dark" />
-        </div>
-      </div>
-    </>
+        </View>
+      </View>
+    </ScrollView>
   );
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flexGrow: 1,
+    padding: 16,
+  },
+  row: {
+    flexDirection: "column",
+    justifyContent: "flex-start",
+    flexWrap: "wrap",
+  },
+  cardContainer: {
+    width: "100%",
+    marginBottom: 16,
+  },
+});

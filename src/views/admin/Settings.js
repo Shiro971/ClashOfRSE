@@ -1,21 +1,38 @@
 import React from "react";
+import { View, StyleSheet, ScrollView } from "react-native";
 
-// components
-
-import CardSettings from "components/Cards/CardSettings.js";
-import CardProfile from "components/Cards/CardProfile.js";
+// Components
+import CardSettings from "../../components/Cards/CardSettings";
+import CardProfile from "../../components/Cards/CardProfile";
 
 export default function Settings() {
   return (
-    <>
-      <div className="flex flex-wrap">
-        <div className="w-full lg:w-8/12 px-4">
+    <ScrollView contentContainerStyle={styles.container}>
+      <View style={styles.row}>
+        <View style={styles.cardContainer}>
           <CardSettings />
-        </div>
-        <div className="w-full lg:w-4/12 px-4">
+        </View>
+        <View style={styles.cardContainer}>
           <CardProfile />
-        </div>
-      </div>
-    </>
+        </View>
+      </View>
+    </ScrollView>
   );
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flexGrow: 1,
+    justifyContent: "center",
+    padding: 16,
+  },
+  row: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    flexWrap: "wrap",
+  },
+  cardContainer: {
+    width: "48%",
+    marginBottom: 16,
+  },
+});
