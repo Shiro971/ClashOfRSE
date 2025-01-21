@@ -1,86 +1,57 @@
-import React from "react";
-import { View, Text, TextInput, TouchableOpacity, StyleSheet } from "react-native";
-import { useNavigation } from "@react-navigation/native";
-import Icon from "react-native-vector-icons/FontAwesome"; // For icons
-import UserDropdown from "../Dropdowns/UserDropdown"; // Assuming this is your custom component
+import "../../../global.css";
+
+import React from 'react';
+import { View, Text, TouchableOpacity, Image, Modal } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
+import IndexDropdown from '../Dropdowns/IndexDropdown'; // Make sure this is defined and imported correctly
 
 export default function Navbar() {
+  const [navbarOpen, setNavbarOpen] = React.useState(false);
   const navigation = useNavigation();
 
   return (
-    <View style={styles.navbar}>
-      <View style={styles.container}>
-        {/* Brand */}
-        <TouchableOpacity onPress={() => navigation.navigate("Dashboard")}>
-          <Text style={styles.brandText}>Dashboard</Text>
-        </TouchableOpacity>
+    <View>
+      <View className="top-0 fixed z-50 w-full flex flex-wrap items-center justify-between px-2 py-3 navbar-expand-lg bg-white">
+        <View className="container px-4 mx-auto flex flex-wrap items-center justify-between">
+          <View className="w-full relative flex justify-between lg:w-auto lg:static lg:block lg:justify-start">
+            <TouchableOpacity
+              onPress={() => navigation.navigate('Home')} // Replace with your Home screen name
+              className="text-blueGray-700 text-sm font-bold leading-relaxed inline-block mr-4 py-2 whitespace-nowrap uppercase"
+            >
+              <Text>ClashOfRSE</Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+              onPress={() => setNavbarOpen(!navbarOpen)}
+              className="cursor-pointer text-xl leading-none px-3 py-1 border border-solid border-transparent rounded bg-transparent block lg:hidden outline-none focus:outline-none"
+            >
+              <Text className="fas fa-bars">☰</Text> {/* Icon using text for simplicity */}
+            </TouchableOpacity>
+          </View>
 
-        {/* Search Form */}
-        <View style={styles.searchContainer}>
-          <Icon name="search" size={20} style={styles.searchIcon} />
-          <TextInput
-            style={styles.searchInput}
-            placeholder="Search here..."
-            placeholderTextColor="#A0AEC0"
-          />
-        </View>
+          <View
+            className={
+              'lg:flex flex-grow items-center bg-white lg:bg-opacity-0'
+            }
+            id="example-navbar-warning"
+          >
+            <View className="flex flex-col lg:flex-row list-none lg:ml-auto">
+              <View className="flex items-center">
+                <IndexDropdown />
+              </View>
 
-        {/* User Dropdown */}
-        <View style={styles.userDropdown}>
-          <UserDropdown />
+              <View className="flex items-center">
+                <TouchableOpacity
+                  onPress={() => console.log('Download pressed')} // Handle Download button press
+                  className="bg-lightBlue-500 text-white active:bg-lightBlue-600 text-xs font-bold uppercase px-4 py-2 rounded outline-none focus:outline-none lg:mr-1 lg:mb-0 ml-3 mb-3 ease-linear transition-all duration-150"
+                >
+                  <Text className="fas fa-arrow-alt-circle-down">↓</Text> {/* Icon using text for simplicity */}
+                  <Text>Download</Text>
+                </TouchableOpacity>
+              </View>
+            </View>
+          </View>
         </View>
       </View>
     </View>
   );
 }
-
-const styles = StyleSheet.create({
-  navbar: {
-    position: "absolute",
-    top: 0,
-    left: 0,
-    right: 0,
-    zIndex: 10,
-    backgroundColor: "transparent",
-    paddingVertical: 16,
-    paddingHorizontal: 16,
-    flexDirection: "row",
-    justifyContent: "space-between",
-    alignItems: "center",
-  },
-  container: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-    alignItems: "center",
-    width: "100%",
-  },
-  brandText: {
-    color: "white",
-    fontSize: 14,
-    fontWeight: "600",
-    textTransform: "uppercase",
-  },
-  searchContainer: {
-    flexDirection: "row",
-    alignItems: "center",
-    backgroundColor: "white",
-    borderRadius: 24,
-    paddingHorizontal: 12,
-    width: 250,
-    marginLeft: "auto",
-  },
-  searchIcon: {
-    color: "#A0AEC0",
-  },
-  searchInput: {
-    flex: 1,
-    paddingVertical: 8,
-    paddingHorizontal: 10,
-    fontSize: 14,
-    color: "#4A5568",
-    backgroundColor: "transparent",
-  },
-  userDropdown: {
-    marginLeft: 16,
-  },
-});

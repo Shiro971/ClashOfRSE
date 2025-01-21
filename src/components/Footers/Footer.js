@@ -1,180 +1,135 @@
-import React from "react";
-import { View, Text, StyleSheet, TouchableOpacity, Linking } from "react-native";
-import { FontAwesome } from "@expo/vector-icons"; // Importing FontAwesome icons
+import React from 'react';
+import { View, Text, TouchableOpacity, Linking } from 'react-native';
+import { Ionicons, FontAwesome, AntDesign } from '@expo/vector-icons';
 
 export default function Footer() {
-  const currentYear = new Date().getFullYear();
-
-  // Function to open links
-  const openLink = (url) => {
-    Linking.openURL(url);
-  };
-
   return (
-    <View style={styles.footerContainer}>
-      {/* SVG shape effect (optional) */}
-      <View style={styles.shapeEffect}></View>
-
-      <View style={styles.contentContainer}>
-        <View style={styles.contactSection}>
-          <Text style={styles.header}>Let's keep in touch!</Text>
-          <Text style={styles.subHeader}>
-            Find us on any of these platforms, we respond in 1-2 business days.
-          </Text>
-          <View style={styles.socialIcons}>
-            <TouchableOpacity
-              style={styles.iconButton}
-              onPress={() => openLink("https://twitter.com")}
-            >
-              <FontAwesome name="twitter" size={20} color="#1DA1F2" />
-            </TouchableOpacity>
-            <TouchableOpacity
-              style={styles.iconButton}
-              onPress={() => openLink("https://facebook.com")}
-            >
-              <FontAwesome name="facebook-square" size={20} color="#4267B2" />
-            </TouchableOpacity>
-            <TouchableOpacity
-              style={styles.iconButton}
-              onPress={() => openLink("https://dribbble.com")}
-            >
-              <FontAwesome name="dribbble" size={20} color="#EA4C89" />
-            </TouchableOpacity>
-            <TouchableOpacity
-              style={styles.iconButton}
-              onPress={() => openLink("https://github.com")}
-            >
-              <FontAwesome name="github" size={20} color="#333" />
-            </TouchableOpacity>
-          </View>
-        </View>
-
-        <View style={styles.linksSection}>
-          <View style={styles.linksColumn}>
-            <Text style={styles.sectionHeader}>Useful Links</Text>
-            <TouchableOpacity onPress={() => openLink("https://aboutus.com")}>
-              <Text style={styles.linkText}>About Us</Text>
-            </TouchableOpacity>
-            <TouchableOpacity onPress={() => openLink("https://blog.com")}>
-              <Text style={styles.linkText}>Blog</Text>
-            </TouchableOpacity>
-            <TouchableOpacity onPress={() => openLink("https://github.com")}>
-              <Text style={styles.linkText}>Github</Text>
-            </TouchableOpacity>
-            <TouchableOpacity onPress={() => openLink("https://freeproducts.com")}>
-              <Text style={styles.linkText}>Free Products</Text>
-            </TouchableOpacity>
-          </View>
-          <View style={styles.linksColumn}>
-            <Text style={styles.sectionHeader}>Other Resources</Text>
-            <TouchableOpacity onPress={() => openLink("https://license.com")}>
-              <Text style={styles.linkText}>MIT License</Text>
-            </TouchableOpacity>
-            <TouchableOpacity onPress={() => openLink("https://terms.com")}>
-              <Text style={styles.linkText}>Terms & Conditions</Text>
-            </TouchableOpacity>
-            <TouchableOpacity onPress={() => openLink("https://privacy.com")}>
-              <Text style={styles.linkText}>Privacy Policy</Text>
-            </TouchableOpacity>
-            <TouchableOpacity onPress={() => openLink("https://contactus.com")}>
-              <Text style={styles.linkText}>Contact Us</Text>
-            </TouchableOpacity>
-          </View>
-        </View>
+    <View className="bg-blueGray-200 pt-8 pb-6">
+      {/* Decorative SVG equivalent */}
+      <View className="w-full absolute bottom-0 left-0 right-0 h-20 -mt-20">
+        {/* You can replace the svg-like decoration with a static image or other visual decorations */}
       </View>
+      
+      {/* Main content */}
+      <View className="container mx-auto px-4">
+        <View className="flex flex-wrap text-center lg:text-left">
+          {/* First Column */}
+          <View className="w-full lg:w-6/12 px-4">
+            <Text className="text-3xl font-semibold">Let's keep in touch!</Text>
+            <Text className="text-lg mt-0 mb-2 text-blueGray-600">
+              Find us on any of these platforms, we respond 1-2 business days.
+            </Text>
+            <View className="mt-6 lg:mb-0 mb-6 flex flex-row justify-center">
+              <TouchableOpacity
+                onPress={() => Linking.openURL('https://twitter.com')}
+                className="bg-white text-lightBlue-400 shadow-lg font-normal h-10 w-10 items-center justify-center align-center rounded-full outline-none focus:outline-none mr-2"
+              >
+                <Ionicons name="logo-twitter" size={24} color="lightblue" />
+              </TouchableOpacity>
+              <TouchableOpacity
+                onPress={() => Linking.openURL('https://facebook.com')}
+                className="bg-white text-lightBlue-600 shadow-lg font-normal h-10 w-10 items-center justify-center align-center rounded-full outline-none focus:outline-none mr-2"
+              >
+                <FontAwesome name="facebook-square" size={24} color="lightblue" />
+              </TouchableOpacity>
+              <TouchableOpacity
+                onPress={() => Linking.openURL('https://dribbble.com')}
+                className="bg-white text-pink-400 shadow-lg font-normal h-10 w-10 items-center justify-center align-center rounded-full outline-none focus:outline-none mr-2"
+              >
+                <FontAwesome name="dribbble" size={24} color="pink" />
+              </TouchableOpacity>
+              <TouchableOpacity
+                onPress={() => Linking.openURL('https://github.com')}
+                className="bg-white text-blueGray-800 shadow-lg font-normal h-10 w-10 items-center justify-center align-center rounded-full outline-none focus:outline-none mr-2"
+              >
+                <FontAwesome name="github" size={24} color="gray" />
+              </TouchableOpacity>
+            </View>
+          </View>
 
-      <View style={styles.footerBottom}>
-        <Text style={styles.copyrightText}>
-          Copyright © {currentYear} Notus React by{" "}
-          <Text
-            style={styles.link}
-            onPress={() => openLink("https://creative-tim.com")}
-          >
-            Creative Tim
-          </Text>
-          .
-        </Text>
+          {/* Second Column */}
+          <View className="w-full lg:w-6/12 px-4">
+            <View className="flex flex-wrap items-top mb-6">
+              <View className="w-full lg:w-4/12 px-4 ml-auto">
+                <Text className="uppercase text-blueGray-500 text-sm font-semibold mb-2">Useful Links</Text>
+                <View>
+                  <TouchableOpacity
+                    onPress={() => Linking.openURL('https://www.creative-tim.com/presentation')}
+                    className="text-blueGray-600 hover:text-blueGray-800 font-semibold block pb-2 text-sm"
+                  >
+                    <Text>About Us</Text>
+                  </TouchableOpacity>
+                  <TouchableOpacity
+                    onPress={() => Linking.openURL('https://blog.creative-tim.com')}
+                    className="text-blueGray-600 hover:text-blueGray-800 font-semibold block pb-2 text-sm"
+                  >
+                    <Text>Blog</Text>
+                  </TouchableOpacity>
+                  <TouchableOpacity
+                    onPress={() => Linking.openURL('https://www.github.com/creativetimofficial')}
+                    className="text-blueGray-600 hover:text-blueGray-800 font-semibold block pb-2 text-sm"
+                  >
+                    <Text>Github</Text>
+                  </TouchableOpacity>
+                  <TouchableOpacity
+                    onPress={() => Linking.openURL('https://www.creative-tim.com/bootstrap-themes/free')}
+                    className="text-blueGray-600 hover:text-blueGray-800 font-semibold block pb-2 text-sm"
+                  >
+                    <Text>Free Products</Text>
+                  </TouchableOpacity>
+                </View>
+              </View>
+              <View className="w-full lg:w-4/12 px-4">
+                <Text className="uppercase text-blueGray-500 text-sm font-semibold mb-2">Other Resources</Text>
+                <View>
+                  <TouchableOpacity
+                    onPress={() => Linking.openURL('https://github.com/creativetimofficial/notus-react/blob/main/LICENSE.md')}
+                    className="text-blueGray-600 hover:text-blueGray-800 font-semibold block pb-2 text-sm"
+                  >
+                    <Text>MIT License</Text>
+                  </TouchableOpacity>
+                  <TouchableOpacity
+                    onPress={() => Linking.openURL('https://creative-tim.com/terms')}
+                    className="text-blueGray-600 hover:text-blueGray-800 font-semibold block pb-2 text-sm"
+                  >
+                    <Text>Terms & Conditions</Text>
+                  </TouchableOpacity>
+                  <TouchableOpacity
+                    onPress={() => Linking.openURL('https://creative-tim.com/privacy')}
+                    className="text-blueGray-600 hover:text-blueGray-800 font-semibold block pb-2 text-sm"
+                  >
+                    <Text>Privacy Policy</Text>
+                  </TouchableOpacity>
+                  <TouchableOpacity
+                    onPress={() => Linking.openURL('https://creative-tim.com/contact-us')}
+                    className="text-blueGray-600 hover:text-blueGray-800 font-semibold block pb-2 text-sm"
+                  >
+                    <Text>Contact Us</Text>
+                  </TouchableOpacity>
+                </View>
+              </View>
+            </View>
+          </View>
+        </View>
+
+        {/* Footer Bottom */}
+        <View className="my-6 border-blueGray-300" />
+        <View className="flex flex-wrap items-center md:justify-between justify-center">
+          <View className="w-full md:w-4/12 px-4 mx-auto text-center">
+            <Text className="text-sm text-blueGray-500 font-semibold py-1">
+              Copyright © {new Date().getFullYear()} Notus React by{' '}
+              <TouchableOpacity
+                onPress={() => Linking.openURL('https://www.creative-tim.com')}
+              >
+                <Text className="text-blueGray-500 hover:text-blueGray-800">
+                  Creative Tim
+                </Text>
+              </TouchableOpacity>
+              .
+            </Text>
+          </View>
+        </View>
       </View>
     </View>
   );
 }
-
-const styles = StyleSheet.create({
-  footerContainer: {
-    backgroundColor: "#edf2f7",
-    paddingTop: 40,
-    paddingBottom: 40,
-  },
-  shapeEffect: {
-    position: "absolute",
-    bottom: 0,
-    width: "100%",
-    height: 40,
-    backgroundColor: "#edf2f7",
-    borderBottomLeftRadius: 20,
-    borderBottomRightRadius: 20,
-  },
-  contentContainer: {
-    marginHorizontal: 20,
-  },
-  contactSection: {
-    marginBottom: 30,
-  },
-  header: {
-    fontSize: 24,
-    fontWeight: "bold",
-    color: "#333",
-    textAlign: "center",
-  },
-  subHeader: {
-    fontSize: 16,
-    color: "#4A5568",
-    textAlign: "center",
-    marginTop: 10,
-  },
-  socialIcons: {
-    flexDirection: "row",
-    justifyContent: "center",
-    marginTop: 20,
-  },
-  iconButton: {
-    backgroundColor: "#fff",
-    borderRadius: 50,
-    padding: 10,
-    margin: 5,
-    justifyContent: "center",
-    alignItems: "center",
-  },
-  linksSection: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-  },
-  linksColumn: {
-    width: "45%",
-  },
-  sectionHeader: {
-    fontSize: 16,
-    fontWeight: "bold",
-    color: "#333",
-    marginBottom: 10,
-  },
-  linkText: {
-    fontSize: 14,
-    color: "#4A5568",
-    marginBottom: 10,
-    textDecorationLine: "underline",
-  },
-  footerBottom: {
-    marginTop: 30,
-    alignItems: "center",
-  },
-  copyrightText: {
-    fontSize: 14,
-    color: "#4A5568",
-    textAlign: "center",
-  },
-  link: {
-    color: "#3182ce",
-    textDecorationLine: "underline",
-  },
-});

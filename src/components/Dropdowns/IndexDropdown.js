@@ -1,9 +1,11 @@
-import React, { useState } from "react";
-import { View, Text, TouchableOpacity, Modal, StyleSheet } from "react-native";
-import { useNavigation } from "@react-navigation/native"; // If you're using React Navigation
+import "../../../global.css";
+
+import React from 'react';
+import { View, Text, TouchableOpacity, Modal, TouchableWithoutFeedback } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 
 const IndexDropdown = () => {
-  const [dropdownPopoverShow, setDropdownPopoverShow] = useState(false);
+  const [dropdownPopoverShow, setDropdownPopoverShow] = React.useState(false);
   const navigation = useNavigation();
 
   const openDropdownPopover = () => setDropdownPopoverShow(true);
@@ -11,92 +13,43 @@ const IndexDropdown = () => {
 
   return (
     <>
-      {/* Dropdown button */}
       <TouchableOpacity
-        style={styles.button}
-        onPress={() => {
-          dropdownPopoverShow ? closeDropdownPopover() : openDropdownPopover();
-        }}
+        onPress={() => (dropdownPopoverShow ? closeDropdownPopover() : openDropdownPopover())}
+        className="hover:text-blueGray-500 text-blueGray-700 px-3 py-4 lg:py-2 flex items-center text-xs uppercase font-bold"
       >
-        <Text style={styles.buttonText}>Compte</Text>
+        <Text>Compte</Text>
       </TouchableOpacity>
 
-      {/* Dropdown Menu */}
       <Modal
+        visible={dropdownPopoverShow}
         transparent={true}
         animationType="fade"
-        visible={dropdownPopoverShow}
         onRequestClose={closeDropdownPopover}
       >
-        <View style={styles.modalOverlay}>
-          <View style={styles.dropdownMenu}>
-            <TouchableOpacity
-              style={styles.dropdownItem}
-              onPress={() => {
-                navigation.navigate("Login"); // Use React Navigation for internal routes
-                closeDropdownPopover();
-              }}
-            >
-              <Text style={styles.menuText}>Se connecter</Text>
-            </TouchableOpacity>
-            <TouchableOpacity
-              style={styles.dropdownItem}
-              onPress={() => {
-                navigation.navigate("Register"); // Use React Navigation for internal routes
-                closeDropdownPopover();
-              }}
-            >
-              <Text style={styles.menuText}>S'inscrire</Text>
-            </TouchableOpacity>
-            <View style={styles.separator} />
-          </View>
+        <TouchableWithoutFeedback onPress={closeDropdownPopover}>
+          <View className="absolute top-0 left-0 right-0 bottom-0 bg-black opacity-50" />
+        </TouchableWithoutFeedback>
+
+        <View className="absolute top-12 left-0 right-0 bg-white rounded-lg shadow-lg py-2 min-w-48">
+          <TouchableOpacity
+            onPress={() => navigation.navigate('Login')} // Replace 'Login' with your actual route
+            className="text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-blueGray-700"
+          >
+            <Text>Se connecter</Text>
+          </TouchableOpacity>
+
+          <TouchableOpacity
+            onPress={() => navigation.navigate('Register')} // Replace 'Register' with your actual route
+            className="text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-blueGray-700"
+          >
+            <Text>S'inscrire</Text>
+          </TouchableOpacity>
+
+          <View className="h-0 mx-4 my-2 border border-solid border-blueGray-100" />
         </View>
       </Modal>
     </>
   );
 };
-
-const styles = StyleSheet.create({
-  button: {
-    paddingVertical: 10,
-    paddingHorizontal: 15,
-    backgroundColor: "#f8f8f8",
-    borderRadius: 5,
-  },
-  buttonText: {
-    color: "#4a5568", // Gray color
-    fontSize: 14,
-    fontWeight: "bold",
-  },
-  modalOverlay: {
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-    backgroundColor: "rgba(0, 0, 0, 0.3)", // Transparent background for modal
-  },
-  dropdownMenu: {
-    backgroundColor: "white",
-    paddingVertical: 10,
-    paddingHorizontal: 20,
-    borderRadius: 8,
-    width: 200,
-    shadowColor: "#000",
-    shadowOffset: { width: 0, height: 4 },
-    shadowOpacity: 0.3,
-    shadowRadius: 5,
-  },
-  dropdownItem: {
-    paddingVertical: 8,
-  },
-  menuText: {
-    fontSize: 14,
-    color: "#4a5568", // Gray color
-  },
-  separator: {
-    height: 1,
-    backgroundColor: "#e2e8f0", // Light gray separator
-    marginVertical: 10,
-  },
-});
 
 export default IndexDropdown;
