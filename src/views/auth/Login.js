@@ -1,21 +1,31 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom"; 
-import authService from "../../services/authService"; 
+import { useNavigate } from "react-router-dom";
+import authService from "../../services/authService";
 
 export default function Login() {
-  const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
-  const navigate = useNavigate(); 
+  const navigate = useNavigate();
 
   const handleLogin = async (e) => {
-    e.preventDefault(); 
+    e.preventDefault();
     try {
-      const response = await authService.login(username, password);
-      localStorage.setItem("token", response.token); 
-      navigate("/admin/dashboard"); 
+      const response = await authService.login(email, password);
+
+      // Sauvegarder les informations dans le localStorage
+      localStorage.setItem("token", response.token);
+      localStorage.setItem("email", email); // Sauvegarder l'email
+      localStorage.setItem("role", response.role); // Si le rôle est dans la réponse
+      localStorage.setItem("image", response.image); // Sauvegarder l'image si elle est dans la réponse
+      localStorage.setItem("nom", response.nom); // Sauvegarder le nom
+      localStorage.setItem("prenom", response.prenom); // Sauvegarder le prénom
+      localStorage.setItem("profileId", response.profileId); // Sauvegarder le profil ID ou d'autres infos si nécessaire
+
+      // Rediriger l'utilisateur vers le tableau de bord
+      navigate("/admin/dashboard");
     } catch (err) {
-      console.log("Erreur détaillée:", err); 
+      console.log("Erreur détaillée:", err);
       setError(err.message || "Erreur lors de la connexion");
     }
   };
@@ -33,17 +43,17 @@ export default function Login() {
                 <div className="relative w-full mb-3">
                   <label
                     className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
-                    htmlFor="username"
+                    htmlFor="email"
                   >
                     Nom d'utilisateur
                   </label>
                   <input
                     type="text"
-                    id="username"
+                    id="email"
                     className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                     placeholder="Nom d'utilisateur"
-                    value={username}
-                    onChange={(e) => setUsername(e.target.value)}
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
                   />
                 </div>
 

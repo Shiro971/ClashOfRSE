@@ -11,8 +11,17 @@ export default function Sidebar() {
 
   const handleLogout = () => {
     localStorage.removeItem('token');
+    localStorage.removeItem('nom');
+    localStorage.removeItem('prenom');
+    localStorage.removeItem('email');
+    localStorage.removeItem('image');
+    localStorage.removeItem('role');
+    localStorage.removeItem('profileId');
     navigate("/");
   };
+  const userPrenom = localStorage.getItem("prenom");
+  const userNom = localStorage.getItem("nom");
+
   return (
     <>
       <nav className="md:left-0 md:block md:fixed md:top-0 md:bottom-0 md:overflow-y-auto md:flex-row md:flex-nowrap md:overflow-hidden shadow-xl bg-white flex flex-wrap items-center justify-between relative md:w-64 z-10 py-4 px-6">
@@ -194,7 +203,7 @@ export default function Sidebar() {
                   to="/profile"
                 >
                   <i className="fas fa-user-circle text-blueGray-400 mr-2 text-sm"></i>{" "}
-                  Profile
+                  { userPrenom } { userNom }
                 </Link>
               </li>
 
