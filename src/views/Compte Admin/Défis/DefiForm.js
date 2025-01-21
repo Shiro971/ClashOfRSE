@@ -1,72 +1,27 @@
-import React from "react";
+import React, { useState } from 'react';
 
-class DefiForm extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      titre: '',
-      description: '',
-      date: ''
-    };
+const DefiForm = () => {
+  const [name, setName] = useState('');
 
-    this.handleInputChange = this.handleInputChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
-  }
-
-  handleInputChange(event) {
-    const { name, value } = event.target;
-    this.setState({
-      [name]: value
-    });
-  }
-
-  handleSubmit(event) {
+  const handleSubmit = (event) => {
     event.preventDefault();
-    // Logique pour gérer la soumission du formulaire
-    console.log('Titre:', this.state.titre);
-    console.log('Description:', this.state.description);
-    console.log('Date:', this.state.date);
-  }
+    alert(`Nom: ${name}`);
+  };
 
-  render() {
-    return (
-      <form onSubmit={this.handleSubmit}>
-        <label>
-          Titre :
-          <input
-            name="titre"
-            type="text"
-            value={this.state.titre}
-            onChange={this.handleInputChange}
-            required
-          />
-        </label>
-        <br />
-        <label>
-          Description :
-          <textarea
-            name="description"
-            value={this.state.description}
-            onChange={this.handleInputChange}
-            required
-          />
-        </label>
-        <br />
-        <label>
-          Date :
-          <input
-            name="date"
-            type="date"
-            value={this.state.date}
-            onChange={this.handleInputChange}
-            required
-          />
-        </label>
-        <br />
-        <button type="submit">Créer Défi</button>
-      </form>
-    );
-  }
-}
+  return (
+    <form onSubmit={handleSubmit}>
+      <label>
+        Nom:
+        <input
+          type="text"
+          name="name"
+          value={name}
+          onChange={(e) => setName(e.target.value)}
+        />
+      </label>
+      <input type="submit" value="Envoyer" />
+    </form>
+  );
+};
 
 export default DefiForm;
