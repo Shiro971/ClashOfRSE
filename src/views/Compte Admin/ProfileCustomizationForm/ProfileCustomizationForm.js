@@ -8,7 +8,6 @@ const ProfileCustomizationForm = ({ onSubmit }) => {
     employeeEmail: '',
     jobTitle: '',
     department: '',
-    profilePicture: '',
   });
 
   const handleChange = (event) => {
@@ -42,10 +41,7 @@ const ProfileCustomizationForm = ({ onSubmit }) => {
         Département:
         <input type="text" name="department" value={formData.department} onChange={handleChange} className="mt-1 p-2 block w-full shadow-sm sm:text-sm border border-gray-300 rounded-md" />
       </label>
-      <label className="block text-lg font-medium text-blueGray-700">
-        Photo de profil:
-        <input type="url" name="profilePicture" value={formData.profilePicture} onChange={handleChange} className="mt-1 p-2 block w-full shadow-sm sm:text-sm border border-gray-300 rounded-md" placeholder="URL de l'image" />
-      </label>
+      
       <input type="submit" value="Personnaliser le profil" className="mt-4 bg-lightBlue-500 hover:bg-lightBlue-600 text-white font-bold py-2 px-4 rounded-md shadow-md cursor-pointer" />
     </form>
   );
@@ -134,7 +130,6 @@ const ProfileCustomizationPage = () => {
                           <p>Email: {submittedData.employeeEmail}</p>
                           <p>Titre du poste: {submittedData.jobTitle}</p>
                           <p>Département: {submittedData.department}</p>
-                          <img src={submittedData.profilePicture} alt="Profil" className="mt-4 max-w-xs rounded-md shadow-md" />
                           <button
                             className="bg-lightBlue-500 active:bg-lightBlue-600 uppercase text-white font-bold hover:shadow-md shadow text-xs px-4 py-2 rounded outline-none focus:outline-none sm:mr-2 mb-1 ease-linear transition-all duration-150"
                             onClick={() => setSubmittedData(null)}
