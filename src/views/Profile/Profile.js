@@ -1,9 +1,13 @@
-import React from "react";
-
+import React, { useState } from "react";
 import Navbar from "components/Navbars/AuthNavbar.js";
 import Footer from "components/Footers/Footer.js";
 
-export default function profile() {
+export default function Profile() {
+  const [showMore, setShowMore] = useState(false);
+
+  const textFull = "An artist of considerable range, Jenna the name taken by Melbourne-raised, Brooklyn-based Nick Murphy writes, performs and records all of his own music, giving it a warm, intimate feel with a solid groove structure. An artist of considerable range. Additional text that will be shown when 'Afficher plus' is clicked. You can add more details about Jenna Stones here or any other relevant information.";
+  const textPreview = "An artist of considerable range, Jenna the name taken by Melbourne-raised, Brooklyn-based Nick Murphy writes, performs and records all of his own music, giving it a warm, intimate feel with a solid groove structure. An artist of considerable range.";
+
   return (
     <>
       <Navbar transparent />
@@ -91,18 +95,17 @@ export default function profile() {
                   <div className="flex flex-wrap justify-center">
                     <div className="w-full lg:w-9/12 px-4">
                       <p className="mb-4 text-lg leading-relaxed text-blueGray-700">
-                        An artist of considerable range, Jenna the name taken by
-                        Melbourne-raised, Brooklyn-based Nick Murphy writes,
-                        performs and records all of his own music, giving it a
-                        warm, intimate feel with a solid groove structure. An
-                        artist of considerable range.
+                        {showMore ? textFull : textPreview}
                       </p>
                       <a
                         href="#pablo"
                         className="font-normal text-lightBlue-500"
-                        onClick={(e) => e.preventDefault()}
+                        onClick={(e) => {
+                          e.preventDefault();
+                          setShowMore(!showMore);
+                        }}
                       >
-                        Show more
+                        {showMore ? "Afficher moins" : "Afficher plus"}
                       </a>
                     </div>
                   </div>
