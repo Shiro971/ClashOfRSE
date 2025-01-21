@@ -47,3 +47,19 @@ npm start
 # or
 npx expo start
 ```
+
+---
+
+5. **Build and Run the App**:
+- Open the Expo Go app on your mobile device.
+- Scan the QR code displayed in the terminal or browser.
+- Wait for the app to load and start using it.
+
+---
+
+6. **Build the App for Production with EAS**:
+```bash
+npm install -g eas-cli
+eas build --platform android --profile preview # For android
+eas build --platform ios --profile preview # For iOS
+```
