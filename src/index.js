@@ -13,8 +13,8 @@ import Auth from "layouts/Auth.js";
 import Landing from "views/Landing.js";
 import Profile from "views/Profile/Profile.js";
 import Index from "views/Index.js";
-import DefiPage from "views/Compte Admin/Défis/DefiPage";
 import DefiForm from "views/Compte Admin/Défis/DefiForm.js";
+import Defi from "views/Compte Admin/Défis/Defi";
 import RoleAssignmentPage from "views/Compte Admin/Role/RoleAssignmentForm"; // Ajoute cette ligne
 import ProfileCustomizationPage from "views/Compte Admin/ProfileCustomizationForm/ProfileCustomizationForm";
 ReactDOM.render(
