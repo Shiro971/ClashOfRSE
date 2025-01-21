@@ -32,7 +32,7 @@ const DefiForm = ({ onSubmit }) => {
         <input type="text" name="author" value={formData.author} onChange={handleChange} className="mt-1 p-2 block w-full shadow-sm sm:text-sm border border-gray-300 rounded-md" />
       </label>
       <label className="block text-lg font-medium text-blueGray-700">
-        Nom:
+        Nom du participant:
         <input type="text" name="name" value={formData.name} onChange={handleChange} className="mt-1 p-2 block w-full shadow-sm sm:text-sm border border-gray-300 rounded-md" />
       </label>
       <label className="block text-lg font-medium text-blueGray-700">
@@ -40,7 +40,7 @@ const DefiForm = ({ onSubmit }) => {
         <input type="email" name="email" value={formData.email} onChange={handleChange} className="mt-1 p-2 block w-full shadow-sm sm:text-sm border border-gray-300 rounded-md" />
       </label>
       <label className="block text-lg font-medium text-blueGray-700">
-        Activité réalisée:
+        Défi à réalisée:
         <input type="text" name="activity" value={formData.activity} onChange={handleChange} className="mt-1 p-2 block w-full shadow-sm sm:text-sm border border-gray-300 rounded-md" />
       </label>
       <label className="block text-lg font-medium text-blueGray-700">
